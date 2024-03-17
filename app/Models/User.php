@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -22,6 +23,7 @@ class User extends Authenticatable
         'email',
         'password',
     ];
+    //campos que son rellenables
 
     /**
      * The attributes that should be hidden for serialization.
@@ -32,6 +34,7 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+//campos que no queremos que se vean
 
     /**
      * The attributes that should be cast.
@@ -40,5 +43,12 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'password' => 'hashed',
     ];
+
+    public function books()
+    {
+        return $this->hasMany(Book::class);
+    }
+
 }
