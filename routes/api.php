@@ -22,4 +22,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::delete('book/{id}',[BookController::class, 'destroy']);
 });
 
+Route::get('/', [BookController::class, 'index']);
 Route::post('login', [UserController::class, 'login']);
